@@ -202,7 +202,7 @@ then
         exit 0
     fi
     # already a pre-release available, bump it
-    if [[ "$pre_tag" =~ $new ]] && [[ "$pre_tag" =~ $suffix ]]
+    if [[ ! "$pre_tag" =~ $new ]] && [[ "$pre_tag" =~ $suffix ]]
     then
         if $with_v
         then
