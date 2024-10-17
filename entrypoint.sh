@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set
+
 set -eo pipefail
 
 # config
