@@ -2,6 +2,11 @@
 
 set
 
+if [[ -f "$GITHUB_EVENT_PATH" ]]; then
+  echo "Event JSON payload:"
+  cat "$GITHUB_EVENT_PATH"
+fi
+
 set -eo pipefail
 
 # config
