@@ -2,6 +2,8 @@
 
 set -xeo pipefail
 
+set
+
 if [[ -f "$GITHUB_EVENT_PATH" ]]; then
   echo "Event JSON payload:"
   cat "$GITHUB_EVENT_PATH"
@@ -66,7 +68,7 @@ setOutput() {
 latest_commit_tags=$(git tag --sort=-committerdate --merged ${GITHUB_REF_NAME} | head -n 1)
 
 # 2. Latest tag by tagged timestamp (descending)
-latest_taggerdate_tags=$(git for-each-ref --sort=-taggerdate --format '%(refname:short)' refs/tags --merged GITHUB_REF_NAME | head -n 1)
+latest_taggerdate_tags=$(git for-each-ref --sort=-taggerdate --format '%(refname:short)' refs/tags --merged ${GITHUB_REF_NAME}  | head -n 1)
 
 # 3 & 4. Latest tags by semver (including and excluding pre-releases)
 # export $(node sort-tags.js) # This will set the semver-based env variables
