@@ -1,13 +1,11 @@
 #!/bin/bash
 
-set
+set -xeo pipefail
 
 if [[ -f "$GITHUB_EVENT_PATH" ]]; then
   echo "Event JSON payload:"
   cat "$GITHUB_EVENT_PATH"
 fi
-
-set -eo pipefail
 
 # config
 default_semvar_bump=${DEFAULT_BUMP:-minor}
@@ -59,12 +57,6 @@ echo -e "\tBRANCH_HISTORY: ${branch_history}"
 echo -e "\tFORCE_WITHOUT_CHANGES: ${force_without_changes}"
 echo -e "\tFORCE_WITHOUT_CHANGES_PRE: ${force_without_changes_pre}"
 echo -e "\tTAG_MESSAGE: ${tag_message}"
-
-# verbose, show everything
-if $verbose
-then
-    set -x
-fi
 
 setOutput() {
     echo "${1}=${2}" >> "${GITHUB_OUTPUT}"
